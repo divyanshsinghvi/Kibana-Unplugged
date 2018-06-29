@@ -63,7 +63,7 @@ var html = '<body><h2>Search/Filter Dropdown</h2><p>Click on the button to open 
 var something = "</div></div>"
 var pluginlist = "";
     fs.readdirSync(pluginFolder).forEach(file => {
-            pluginlist =  pluginlist + '<a href="#'+String(file)+'">'+String(file)+'</a>';
+            pluginlist =  pluginlist + '<a href="/plugin?name='+String(file)+'">'+String(file)+'</a>';
             console.log(file);
     });
     res.send(css + html + pluginlist+ something + script);
