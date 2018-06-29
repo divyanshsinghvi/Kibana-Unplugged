@@ -13,5 +13,10 @@
         var url = document.getElementById("myLink").value;
         document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+serverurl+"/plugin?name=youtube&url="+url+"</p>";
       }
+
+      document.querySelector('button').onclick = function () {
+        var url = document.getElementById("myLink").value;
+        parent.postMessage("myevent", serverurl+"/plugin?name=youtube&url="+url);
+      };
     </script>
 </html>
