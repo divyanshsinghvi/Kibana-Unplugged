@@ -1,0 +1,21 @@
+<html>
+  <body>
+  </body>
+    <div id="divId"><p>
+      Youtube Link: <input type="text" id="myLink" value="">
+      <button onclick="onClick()">Submit</button>
+  </p>
+  <div id="urlDiv"></div>
+</div>
+  <script>
+      <!--var serverurl = <%-url%>;-->
+      var serverurl = "http://localhost";
+      function onClick() {
+        var url = document.getElementById("myLink").value;
+        console.log(url);
+        console.log(serverurl);
+        console.log(document.getElementById("divId"));
+        document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+serverurl+"/plugin?name=youtube&url=\""+url+"\"</p>";
+      }
+    </script>
+</html>
