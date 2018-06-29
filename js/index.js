@@ -9,6 +9,7 @@ const config = require('nodejs-config') (path.resolve("../"));
 const port = config.get('server').port;
 const host = config.get('server').host;
 
+const pluginFolder = path.resolve('../plugins')
 //Defining Express server
 
 app.use(bodyParser.json());
@@ -36,6 +37,15 @@ app.get('/', function(req, res) {
 
 app.get('/neo4j', function(req, res) {
 	res.send({"Nodes": nodesprocessed, "Edges": edgesprocessed});
+});
+
+app.get('/plugins',function(req,res){
+    fs.readdir(pluginFolder,(err,files) => {
+        files.forEach(file => {
+            console.log(file);
+        });
+    });
+    res.send("")
 });
 
 server.listen(port, function() {
