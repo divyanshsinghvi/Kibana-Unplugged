@@ -3,7 +3,7 @@
   </body>
     <div id="divId"><p>
       Youtube Link: <input type="text" id="myLink" value="">
-      <button onclick="onClick()">Submit</button>
+      <button onclick="message()">Submit</button>
   </p>
   <div id="urlDiv"></div>
 </div>
@@ -13,8 +13,7 @@
         var url = document.getElementById("myLink").value;
         document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+serverurl+"/plugin?name=youtube&url="+url+"</p>";
       }
-
-      document.querySelector('button').onclick = function () {
+      function message () {
         var url = document.getElementById("myLink").value;
         parent.postMessage("myevent", serverurl+"/plugin?name=youtube&url="+url);
       };
