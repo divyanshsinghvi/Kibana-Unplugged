@@ -42,14 +42,18 @@ app.post('/upload', function(req, res) {
 		return res.status(400).send('No files were uploaded.');
 	let pluginFile = req.files.file
 	var pluginname = req.files.file.name
-	pluginFile.mv(pluginFolder, function(err) {
+	pluginFile.mv(pluginFolder + '/' + pluginname, function(err) {
 		if(err) {
 			return res.status(500).send(err);
 		}
-		res.send(200);
 	});
 	fs.createReadStream(pluginFolder + '/' + pluginname).pipe(unzip.Extract({ path: pluginFolder }));
-	fs.unlink(pluginFolder + '/' + pluginname);
+	fs.unlink(pluginFolder + '/' + pluginname, function(err) {
+		res.status(200).send('Success');
+		if(err) {
+			console.log("Could not delete");
+		}
+	});
 });
 
 app.get('/plugins',function(req,res){
