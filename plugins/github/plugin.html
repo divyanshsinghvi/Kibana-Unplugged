@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>github-embed demo</title>
+    <link rel="stylesheet" type="text/css" href="plugins/github/github-embed.css">
+    <style>
+    body {
+        font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
+        font-size: 12px;
+    }
+    
+    div {
+      height: 500px;
+    }
+    
+    #settings-object {
+      margin-bottom: 2rem;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="settings-object"></div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
+  <script src="plugins/github/github-embed.min.js"></script>
+  <script>
+    params = <%-params%>;
+    console.log(JSON.stringify(params));
+    githubEmbed('#settings-object', {
+    	"owner": params.owner,
+        "repo": params.repo,
+        "ref": params.tag,
+    	"embed": [{
+            "path": params.filepath,
+            "type": params.filetype
+    	}]
+    });
+  </script>
+</html>

@@ -11,9 +11,6 @@
       var serverurl = <%-url%>.url;
       function onClick() {
         var url = document.getElementById("myLink").value;
-        console.log(url);
-        console.log(serverurl);
-        console.log(document.getElementById("divId"));
         document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+serverurl+"/plugin?name=youtube&url="+url+"</p>";
       }
     </script>

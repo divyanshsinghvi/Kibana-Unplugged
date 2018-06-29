@@ -68,12 +68,13 @@ app.get('/config', function(req, res) {
 });
 
 app.get('/plugin', function(req, res) {
-	if(!req.query.name || !req.query.url) {
+	if(!req.query.name) {
 		return res.status(400).send('No plugin name provided');
 	}
 	let pluginName = req.query.name;
+	console.log(req.query);
 	res.render(pluginName + '/plugin', {
-		"url": JSON.stringify({"url": req.query.url})
+		"params": JSON.stringify(req.query)
 	});
 });
 
