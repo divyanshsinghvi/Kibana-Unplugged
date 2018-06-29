@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 const app = express();
-const server = require('http').Server(app);;
+const server = require('http').Server(app);
+const config = require('nodejs-config') (path.resolve("../"));
 
 const port = config.get('server').port;
 const host = config.get('server').host;
@@ -25,15 +26,11 @@ app.get('/', function(req, res) {
 	if(req.query.data) {
 		data = req.query.data;
 	}
-	redisClient.flushdb(function(err,done) {
-		if(!err) {
-			res.render('index', {
-				port: port,
-				data: data,
-				host: JSON.stringify({"host": host}),
-				shiny: shiny
-			});
-		}
+	res.render('index', {
+		port: port,
+		data: data,
+		host: JSON.stringify({"host": host}),
+		shiny: shiny
 	});
 });
 
