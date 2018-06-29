@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("../"));
 app.use('/',express.static("../views"));
 app.engine('.html', require('ejs').__express);
-app.set('views',  path.resolve("../html"));
+app.set('views',  path.resolve("../plugins"));
 app.set('view engine', 'html');
 app.use(fileUpload());
 
@@ -49,11 +49,29 @@ app.post('/upload', function(req, res) {
 	});
 	fs.createReadStream(pluginFolder + '/' + pluginname).pipe(unzip.Extract({ path: pluginFolder }));
 	fs.unlink(pluginFolder + '/' + pluginname, function(err) {
-		res.status(200).send('Success');
+		return res.status(200).send('Success');
 		if(err) {
 			console.log("Could not delete");
 		}
 	});
+});
+
+app.get('/config', function(req, res) {
+	if(!req.query.name) {
+		return res.status(400).send('No plugin name provided');
+	}
+	let pluginName = req.query.name;
+	res.render(path.resolve(pluginName + '/config'), {
+		"url": config.host + ":" + config.port
+	});
+});
+
+app.get('/plugin', function(req, res) {
+	if(!req.query.name) {
+		return res.status(400).send('No plugin name provided');
+	}
+	let pluginName = req.query.name;
+	res.render(path.resolve(pluginName + '/plugin'), res.query);
 });
 
 server.listen(port, function() {
