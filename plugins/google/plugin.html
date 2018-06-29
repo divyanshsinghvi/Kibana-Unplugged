@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+	var url = <%-params%>.url;
+    window.onload = function() {
+        var iframe = document.createElement('iframe');
+        iframe.setAttribute("src", url);
+        iframe.height = "315";
+        iframe.width = "560";
+        iframe.frameBorder = "0";
+        document.getElementById("framediv").appendChild(iframe);
+    }
+</script>
+<div id="framediv">
+</div>
+</body>
+</html>
