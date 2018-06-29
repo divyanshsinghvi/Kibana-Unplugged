@@ -62,17 +62,19 @@ app.get('/config', function(req, res) {
 		return res.status(400).send('No plugin name provided');
 	}
 	let pluginName = req.query.name;
-	res.render(path.resolve(pluginName + '/config'), {
-		"url": config.host + ":" + config.port
+	res.render(pluginName + '/config', {
+		"url": JSON.stringify({"url": host + ":" + port})
 	});
 });
 
 app.get('/plugin', function(req, res) {
-	if(!req.query.name) {
+	if(!req.query.name || !req.query.url) {
 		return res.status(400).send('No plugin name provided');
 	}
 	let pluginName = req.query.name;
-	res.render(path.resolve(pluginName + '/plugin'), res.query);
+	res.render(pluginName + '/plugin', {
+		"url": JSON.stringify({"url": req.query.url})
+	});
 });
 
 app.get('/pluginList',function(req,res){
@@ -82,7 +84,7 @@ var html = '<body><h2>Search/Filter Dropdown</h2><p>Click on the button to open 
 var something = "</div></div>"
 var pluginlist = "";
     fs.readdirSync(pluginFolder).forEach(file => {
-            pluginlist =  pluginlist + '<a href="/plugin?name='+String(file)+'">'+String(file)+'</a>';
+            pluginlist =  pluginlist + '<a href="/config?name='+String(file)+'">'+String(file)+'</a>';
             console.log(file);
     });
     res.send(css + html + pluginlist+ something + script);
