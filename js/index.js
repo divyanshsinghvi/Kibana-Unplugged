@@ -5,9 +5,11 @@ const fs = require('fs');
 const app = express();
 const server = require('http').Server(app);
 const config = require('nodejs-config') (path.resolve("../"));
-
+const fileUpload = require('express-fileupload');
 const port = config.get('server').port;
 const host = config.get('server').host;
+const pluginFolder = path.resolve('../plugins');
+const unzip = require('unzip');
 
 const pluginFolder = path.resolve('../plugins')
 //Defining Express server
@@ -19,6 +21,7 @@ app.use('/',express.static("../views"));
 app.engine('.html', require('ejs').__express);
 app.set('views',  path.resolve("../html"));
 app.set('view engine', 'html');
+app.use(fileUpload());
 
 //Routes
 
@@ -35,8 +38,19 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.get('/neo4j', function(req, res) {
-	res.send({"Nodes": nodesprocessed, "Edges": edgesprocessed});
+app.post('/upload', function(req, res) {
+	if (!req.files)
+		return res.status(400).send('No files were uploaded.');
+	let pluginFile = req.files.file
+	var pluginname = req.files.file.name
+	pluginFile.mv(pluginFolder, function(err) {
+		if(err) {
+			return res.status(500).send(err);
+		}
+		res.send(200);
+	});
+	fs.createReadStream(pluginFolder + '/' + pluginname).pipe(unzip.Extract({ path: pluginFolder }));
+	fs.unlink(pluginFolder + '/' + pluginname);
 });
 
 app.get('/plugins',function(req,res){
