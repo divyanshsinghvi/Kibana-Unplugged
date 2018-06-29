@@ -46,10 +46,15 @@ app.post('/upload', function(req, res) {
 		if(err) {
 			return res.status(500).send(err);
 		}
-		res.send(200);
+		res.status(200);
 	});
 	fs.createReadStream(pluginFolder + '/' + pluginname).pipe(unzip.Extract({ path: pluginFolder }));
-	fs.unlink(pluginFolder + '/' + pluginname);
+	fs.unlink(pluginFolder + '/' + pluginname, function(err) {
+		res.status(200);
+		if(err) {
+			console.log("Could not delete");
+		}
+	});
 });
 
 server.listen(port, function() {
