@@ -85,10 +85,11 @@ var html = '<body><h2>Search/Filter Dropdown</h2><p>Click on the button to open 
 var something = "</div></div>"
 var pluginlist = "";
     fs.readdirSync(pluginFolder).forEach(file => {
-            pluginlist =  pluginlist + '<a href="/config?name='+String(file)+'">'+String(file)+'</a>';
+            pluginlist =  pluginlist + '<a id='+String(file)+' href="#config">'+String(file)+'</a>';
             console.log(file);
     });
-    res.send(css + html + pluginlist+ something + script);
+var config = '<div id="div1"></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script>$(document).on("click","a",function(e){ e.preventDefault();$.ajax({type:"GET",url:"http://localhost:8000/config?name="+$(this).attr("id"), success:function(result){$("#div1").html(result)}})});</script>' 
+    res.send(css + html + pluginlist+ something + script + config);
 });
 
 server.listen(port, function() {
