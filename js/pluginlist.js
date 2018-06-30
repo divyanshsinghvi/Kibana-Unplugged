@@ -5,7 +5,9 @@ var serverurl="http://localhost:8000"
                 //console.log(file);
         });
 */
-var pluginlist ='<a id=youtube href="config">youtube</a> '
-$(document).on("click","a",function(e){ e.preventDefault();document.getElementById("kibanadiv").appendChild("http://localhost:8000/plugins/"+$(this).attr("id")+".js")});
+var pluginlist ='<button onclick="onPluginClick()" id=youtube>youtube</button>'
+function onPluginClick(){
+    document.getElementById("kibanascript").appendChild("http://localhost:8000/plugins/"+$(this).attr("id")+".js");
+}
 document.getElementById("kibanadiv").innerHTML = pluginlist
 
