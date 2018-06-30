@@ -9,6 +9,13 @@ const fileUpload = require('express-fileupload');
 const port = config.get('server').port;
 const host = config.get('server').host;
 const unzip = require('unzip');
+var elasticsearch = require('elasticsearch');
+const cors = require('cors')
+
+var client = new elasticsearch.Client({
+	host: config.get('server').es_cred_url,
+	log: 'trace'
+  });
 
 const pluginFolder = path.resolve('../plugins');
 //Defining Express server
@@ -21,21 +28,22 @@ app.engine('.html', require('ejs').__express);
 app.set('views',  path.resolve("../plugins"));
 app.set('view engine', 'html');
 app.use(fileUpload());
+app.use(cors());
+
+//Elasticsearch
+
+client.ping({
+	// ping usually has a 3000ms timeout
+	requestTimeout: 1000
+  }, function (error) {
+	if (error) {
+	  console.trace('elasticsearch cluster is down!');
+	} else {
+	  console.log('All is well');
+	}
+  });
 
 //Routes
-
-app.get('/', function(req, res) {
-	var data = "meta-academy";
-	if(req.query.data) {
-		data = req.query.data;
-	}
-	res.render('index', {
-		port: port,
-		data: data,
-		host: JSON.stringify({"host": host}),
-		shiny: shiny
-	});
-});
 
 app.post('/upload', function(req, res) {
 	if (!req.files)
@@ -62,6 +70,7 @@ app.get('/config', function(req, res) {
 		return res.status(400).send('No plugin name provided');
 	}
 	let pluginName = req.query.name;
+
 	res.render(pluginName + '/config', {
 		"url": JSON.stringify({"url": host + ":" + port})
 	});
@@ -72,11 +81,17 @@ app.get('/plugin', function(req, res) {
 		return res.status(400).send('No plugin name provided');
 	}
 	let pluginName = req.query.name;
-	console.log(req.query);
-	res.render(pluginName + '/plugin', {
-		"params": JSON.stringify(req.query)
-	});
+	var es_loader = require("../plugins/" + pluginName + "/es_driver.js");
+	let callback = plugin_renderer.bind(null, pluginName, res);
+	plugin_data = es_loader.run(client, req.query, callback);
 });
+
+function plugin_renderer(pluginName, res, plugin_data) {
+	console.log(plugin_data);
+	res.render(pluginName + '/plugin', {
+		"params": JSON.stringify(plugin_data)
+	});
+}
 
 app.get('/pluginList',function(req,res){
 var css = '<head><meta name="viewport" content="width=device-width, initial-scale=1"><style>.dropbtn {background-color: #4CAF50;        color: white;        padding: 16px;        font-size: 16px;        border: none;        cursor: pointer;    }.dropbtn:hover, .dropbtn:focus {    background-color: #3e8e41;}#myInput {    border-box: box-sizing;    background-image: url("searchicon.png");    background-position: 14px 12px;    background-repeat: no-repeat;    font-size: 16px;    padding: 14px 20px 12px 45px;    border: none;    border-bottom: 1px solid #ddd;}#myInput:focus {outline: 3px solid #ddd;}.dropdown {    position: relative;    display: inline-block;}.dropdown-content { display: none;    position: absolute;    background-color: #f6f6f6;    min-width: 230px;    overflow: auto;    border: 1px solid #ddd;    z-index: 1;}.dropdown-content a {    color: black;    padding: 12px 16px;    text-decoration: none;    display: block;}.dropdown a:hover {background-color: #ddd;}.show {display: block;}</style></head>';
