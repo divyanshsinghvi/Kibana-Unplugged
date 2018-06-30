@@ -1,24 +1,13 @@
 function run(client, data, callback) {
-    // if(data.url) {
-    //     return data;
-    // }
-    // const response =  search({
-    //     index: data.index,
-    //     type: data.index,
-    //     body: data.query
-    // });
+    if(data.url) {
+        return data;
+    }
     const response = client.search({
-        index: "url",
-        type: "url",
-        body: {
-            "query": {
-                "match_all": {}
-            }
-        }
+        index: data.index,
+        type: data.index,
+        body: data.query
     }, function(err, response, status) {
-        console.log(response);
-        console.log(status);
-        data.url = response.hits.hits[0]._source.url;
+        data.url = response.hits.hits[0]._source[data.field];
         callback(data);
     });
     return data;
@@ -27,3 +16,10 @@ function run(client, data, callback) {
 module.exports = {
     "run": run
 };
+
+// var req = {
+//     "sort": [
+//         {"date": {"order": "desc"}}
+//     ],
+//     "size": 1
+// }
