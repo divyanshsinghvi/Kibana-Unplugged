@@ -7,7 +7,6 @@ var UI = "\
       Field:             <input type=\"text\" id=\"field\" value=\"\"><br>\
       <button onclick=\"onClick()\">Submit</button>\
   </p>\
-  <div id=\"urlDiv\"></div>\
 </div>";
 function onClick() {
   var url = document.getElementById("myLink").value;
@@ -20,7 +19,7 @@ function onClick() {
   } else {
     redirecturl = serverurl+"/plugin?name=youtube&index="+index+"&query="+query+"&field="+field;
   }
-  document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+redirecturl+"</p>";
+  document.getElementById("urltext").value = redirecturl;
 }
 
 document.getElementById("kibanadiv").innerHTML = UI;
