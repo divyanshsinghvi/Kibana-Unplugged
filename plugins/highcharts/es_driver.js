@@ -1,6 +1,7 @@
 function run(client, data, callback) {
     if(data.url) {
-        return data;
+        callback(data);
+        return;
     }
     const response = client.search({
         index: data.index,
@@ -10,7 +11,7 @@ function run(client, data, callback) {
         data.url = response.hits.hits[0]._source[data.field];
         callback(data);
     });
-    return data;
+    return;
 }
 
 module.exports = {
