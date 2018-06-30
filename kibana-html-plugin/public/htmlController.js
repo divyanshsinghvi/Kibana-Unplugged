@@ -10,6 +10,7 @@ module.controller('KbnHtmlVisController', function ($scope, $sce) {
   
   var html = $scope.vis.params.html;
     if (html!="default" && $scope.updateStatus.params){
+    html = encodeURI(html);
     console.log(html);
     var a='<iframe src=';
     var b=' width="100%" height="400px"></iframe>';
