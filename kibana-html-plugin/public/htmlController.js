@@ -13,7 +13,8 @@ module.controller('KbnHtmlVisController', function ($scope, $sce) {
        $scope.$watch('renderComplete', function () {
   
   var html = $scope.vis.params.html;
-  console.log(html);
+  console.log($scope.html);
+  console.log(document.getElementById("kibanadiv").innerHTML);
  
     if (html){
     	//$scope.html = $sce.trustAsHtml('<!DOCTYPE html><html><body><div id="thatswhatshesaid"> </div><script>var HttpClient = function() {this.get = function(aUrl, aCallback) {var anHttpRequest = new XMLHttpRequest();anHttpRequest.onreadystatechange = function() { if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)aCallback(anHttpRequest.responseText);};anHttpRequest.open( "GET", aUrl, true );anHttpRequest.send( null );}};var client = new HttpClient();client.get(\'http://localhost:8000/pluginList\',function(response){console.log(response);document.getElementById("thatswhatshesaid").innerHTML = response;});</script></body></html>');
