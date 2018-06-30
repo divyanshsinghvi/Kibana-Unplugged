@@ -1,6 +1,6 @@
 var UI = "\
 <div id=\"divId\"><p>\
-      Youtube Link: <input type=\"text\" id=\"myLink\" value=\"\"><br>\
+      Highcharts Link: <input type=\"text\" id=\"myLink\" value=\"\"><br>\
       OR<br>\
       Index Name: <input type=\"text\" id=\"index\" value=\"\"><br>\
       Elastic DSL:       <textarea id=\"dsl\" rows=\"10\" cols=\"30\"> </textarea>><br>\
@@ -16,9 +16,9 @@ function onClick() {
   var field = document.getElementById("field").value;
   var redirecturl;
   if(url!='') {
-    redirecturl = serverurl+"/plugin?name=youtube&url="+url;
+    redirecturl = serverurl+"/plugin?name=highcharts&url="+url;
   } else {
-    redirecturl = serverurl+"/plugin?name=youtube&index="+index+"&query="+query+"&field="+field;
+    redirecturl = serverurl+"/plugin?name=highcharts&index="+index+"&query="+query+"&field="+field;
   }
   document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+redirecturl+"</p>";
 }
