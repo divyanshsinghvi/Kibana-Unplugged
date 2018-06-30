@@ -2,7 +2,11 @@
   <body>
   </body>
     <div id="divId"><p>
-      Google Link: <input type="text" id="myLink" value="">
+      Youtube Link: <input type="text" id="myLink" value=""><br>
+      OR<br>
+      Index Name: <input type="text" id="index" value=""><br>
+      Elastic DSL:       <textarea id="dsl" rows="10" cols="30"> </textarea>><br>
+      Field:             <input type="text" id="field" value=""><br>
       <button onclick="onClick()">Submit</button>
   </p>
   <div id="urlDiv"></div>
@@ -11,10 +15,16 @@
       var serverurl = <%-url%>.url;
       function onClick() {
         var url = document.getElementById("myLink").value;
-        console.log(url);
-        console.log(serverurl);
-        console.log(document.getElementById("divId"));
-        document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+serverurl+"/plugin?name=google&url="+url+"</p>";
+        var index = document.getElementById("index").value;
+        var query = document.getElementById("dsl").value;
+        var field = document.getElementById("field").value;
+        var redirecturl;
+        if(url!='') {
+          redirecturl = serverurl+"/plugin?name=youtube&url="+url;
+        } else {
+          redirecturl = serverurl+"/plugin?name=youtube&index="+index+"&query="+query+"&field="+field;
+        }
+        document.getElementById("urlDiv").innerHTML = "<p id=\"redirectURL\">"+redirecturl+"</p>";
       }
     </script>
 </html>
