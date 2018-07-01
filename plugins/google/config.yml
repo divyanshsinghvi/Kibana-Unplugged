@@ -1,7 +1,7 @@
-title: Youtube Visualization
-plugin: youtube
+title: Google Visualization
+plugin: google
 form:
- - name: myLink
+ - name: url
    type: input
    value: ''
    label: Google Drive Link
@@ -11,7 +11,7 @@ form:
    type: input
    value: ''
    label: Index Name
- - name: dsl
+ - name: query
    type: textarea
    value: ''
    label: ES-DSL

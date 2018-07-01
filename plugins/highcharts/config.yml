@@ -1,15 +1,15 @@
- title: HighChart Visualization
- plugin: highcharts
- form:
-  - name: index
-    type: input
-    value: ''
-    label:Index Name
-  - name: dsl
-    type: textarea
-    value: ''
-    label: Elastic DSL
-  - name: field
-    type: input
-    value: ''
-    label: Field
+title: HighChart Visualization
+plugin: highcharts
+form:
+ - name: index
+   type: input
+   value: ''
+   label: Index Name
+ - name: query
+   type: textarea
+   value: ''
+   label: Elastic DSL
+ - name: field
+   type: input
+   value: ''
+   label: Field

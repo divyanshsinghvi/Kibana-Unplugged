@@ -1,15 +1,15 @@
  title: Github Visualization
  plugin: github
  form:
-  - name: myLink
+  - name: owner
     type: input
     value: ''
-    label:Repo Owner Name
-  - name: reponame
+    label: Repo Owner Name
+  - name: repo
     type: input
     value: ''
     label: Repo Name
-  - name: repotag
+  - name: tag
     type: input
     value: ''
     label: Repo Tag
