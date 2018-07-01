@@ -1,0 +1,22 @@
+title: Youtube Visualization
+plugin: youtube
+form:
+ - name: myLink
+   type: input
+   value: ''
+   label: Google Drive Link
+ - type: divider
+   value: OR
+ - name: index
+   type: input
+   value: ''
+   label: Index Name
+ - name: dsl
+   type: textarea
+   value: ''
+   label: ES-DSL
+ - name: field
+   type: input
+   value: ''
+   label: Field
+

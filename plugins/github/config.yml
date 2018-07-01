@@ -1,0 +1,25 @@
+ title: Github Visualization
+ plugin: github
+ form:
+  - name: myLink
+    type: input
+    value: ''
+    label:Repo Owner Name
+  - name: reponame
+    type: input
+    value: ''
+    label: Repo Name
+  - name: repotag
+    type: input
+    value: ''
+    label: Repo Tag
+  - name: filepath
+    type: input
+    value: ''
+    label: File Path
+  - name: filetype
+    type: input
+    value: ''
+    label: File Type
+
+
