@@ -21,10 +21,10 @@ function HtmlVisProvider(Private) {
 
   return VisFactory.createAngularVisualization({
     name: 'html',
-    title: 'Html widget',
+    title: 'Unplugged',
     isAccessible: true,
     icon: 'fa-code',
-    description: 'Useful for displaying html in dashboards.',
+    description: 'Do what Kibana never could.',
     category: CATEGORY.OTHER,
     visConfig: {
       template: mainTemplate
