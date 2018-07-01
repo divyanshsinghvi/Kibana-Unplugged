@@ -5,12 +5,22 @@
                 //console.log(file);
         });
 */
-var UI = "\
-<div id=\"divId\"><p>\
-      Plugin Name: <input type=\"text\" id=\"myLink\" value=\"\"><br>\
-      <button onclick=\"onClick()\">Submit</button>\
-  </p>\
-</div>";
+var UI = '\
+<div class="vis-editor-agg-header-title sidebar-item-title">\
+    Visualization Selector\
+  </div>\
+  <div class="euiSpacer euiSpacer--m"></div>\
+<div class="sidebar-item vis-editor-agg-wrapper form-group vis-editor-agg ng-pristine ng-valid ng-valid-json-input ng-valid-required">\
+  <div class="metrics vis-editor-agg-group">\
+      <label for="myLink">Plugin Name</label>\
+      <div>\
+      <input type=\"text\" id=\"myLink\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched"><br>\
+      </div>\
+  </div>\
+  <button onclick=\"onClick()\" class="kuiButton kuiButton--secondary kuiButton--large">Submit</button>\
+</div>';
+
+
 var serverurl = "http://localhost:8000";
 function onClick() {
   var name = document.getElementById("myLink").value;
@@ -24,9 +34,5 @@ function onClick() {
 }
 
 document.getElementById("kibanadiv").innerHTML = UI;
-
-// var pluginlist ='<a id=youtube href="config">youtube</a> '
-// $(document).on("click","a",function(e){ e.preventDefault();document.getElementById("kibanadiv").appendChild("http://localhost:8000/plugins/"+$(this).attr("id")+".js")});
-// document.getElementById("kibanadiv").innerHTML = pluginlist
 
 

@@ -3,6 +3,14 @@
     <label>HTML</label>
   </div>
   <div ng-controller="KbnHtmlEditController">
-      <div id="kibanadiv" ng-model="vis.params.html"> </div> <script src="http://localhost:8000/js/pluginlist.js" id="kibanascript"></script>
+      <div id="kibanadiv"> </div> <script src="http://localhost:8000/js/pluginlist.js" id="kibanascript"></script>
+      <div class="sidebar-item vis-editor-agg-wrapper form-group vis-editor-agg ng-pristine ng-valid ng-valid-json-input ng-valid-required">
+          <div class="metrics vis-editor-agg-group">
+              <label for="urltext">API Link</label>
+            <div>
+              <input ng-model="vis.params.html" type="text" id="urltext" class="form-control ng-pristine ng-valid ng-empty ng-touched">
+            </div>
+            </div>
+      </div>
   </div>
 </div>
