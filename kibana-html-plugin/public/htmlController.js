@@ -13,7 +13,7 @@ module.controller('KbnHtmlVisController', function ($scope, $sce) {
     html = encodeURI(html);
     console.log(html);
     var a='<iframe src=';
-    var b=' width="100%" height="400px"></iframe>';
+    var b=' width="100%" height="800"></iframe>';
     var c="\"" + html + "\"";
     console.log(c);
     $scope.html = $sce.trustAsHtml('<!DOCTYPE html><html><body>'+a+c+b+'</body></html>');
