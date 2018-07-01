@@ -31,8 +31,7 @@ function HtmlVisProvider(Private) {
     },
     editorConfig: {
       optionsTemplate: optionsTemplate,
-      enableAutoApply: true,
-      defaultSize: DefaultEditorSize.LARGE
+      enableAutoApply: false
     },
     options: {
       showTimePicker: false,
