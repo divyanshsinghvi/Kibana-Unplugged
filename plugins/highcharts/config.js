@@ -17,7 +17,7 @@ var UI = '\
         <textarea id=\"dsl\" rows=\"10\" cols=\"30\" class="form-control ng-pristine ng-valid ng-empty ng-touched"> </textarea><br>\
         </div>\
         <div class="euiSpacer euiSpacer--m"></div>\
-        <label for="index">Field</label>\
+        <label for="field">Field</label>\
         <div>\
         <input type=\"text\" id=\"field\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched">\
         </div>\

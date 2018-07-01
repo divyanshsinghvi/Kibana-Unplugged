@@ -10,22 +10,22 @@ var UI= '\
         <input type=\"text\" id=\"myLink\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched">\
         </div>\
         <div class="euiSpacer euiSpacer--m"></div>\
-        <label for="myLink">Repo Name</label>\
+        <label for="reponame">Repo Name</label>\
         <div>\
         <input type=\"text\" id=\"reponame\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched">\
         </div>\
         <div class="euiSpacer euiSpacer--m"></div>\
-        <label for="myLink">Repo Tag</label>\
+        <label for="repotag">Repo Tag</label>\
         <div>\
         <input type=\"text\" id=\"repotag\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched">\
         </div>\
         <div class="euiSpacer euiSpacer--m"></div>\
-        <label for="myLink">FilePath</label>\
+        <label for="filepath">FilePath</label>\
         <div>\
         <input type=\"text\" id=\"filepath\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched">\
         </div>\
         <div class="euiSpacer euiSpacer--m"></div>\
-        <label for="myLink">FileType</label>\
+        <label for="filetype">FileType</label>\
         <div>\
         <input type=\"text\" id=\"filetype\" value=\"\" class="form-control ng-pristine ng-valid ng-empty ng-touched">\
         </div>\
